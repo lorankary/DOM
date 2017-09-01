@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document Object Model</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+
+  <body>
+    <!-- <div id = "wrapperDiv">
+      <div id = 'buttDiv'>
+        <div id = 'buttOne'>Button One</div>
+        <div id = 'buttTwo'>Button Two</div>
+      </div>
+      <div id = "canDiv"></div>
+    </div> -->
+
+    <script>
+      var wrapperDiv = document.createElement("div");
+      wrapperDiv.setAttribute("id","wrapperDiv");
+      document.body.appendChild(wrapperDiv);
+
+      var buttDiv = document.createElement("div");
+      buttDiv.setAttribute("id","buttDiv");
+      wrapperDiv.appendChild(buttDiv);
+
+      var buttOneDiv = document.createElement("div");
+      buttOneDiv.setAttribute("id", "buttOne");
+      buttOneDiv.appendChild(document.createTextNode("Button One"));
+      buttDiv.appendChild(buttOneDiv);
+
+      var buttTwoDiv = document.createElement("div");
+      buttTwoDiv.setAttribute("id", "buttTwo");
+      buttTwoDiv.appendChild(document.createTextNode("Button Two"));
+      buttDiv.appendChild(buttTwoDiv);
+
+      var canDiv = document.createElement("div");
+      canDiv.setAttribute("id", "canDiv");
+      wrapperDiv.appendChild(canDiv);
+
+      console.log(window.document);
+      recurseDocumentTree(window.document, "");
+      // recurseDocumentTree() -- descend recursively the tree of elements
+      function recurseDocumentTree(node, indent) {
+        console.log(`${indent}${node} ${node.nodeName}`);
+        // if this node is an Element and it has any attributes,
+        // show the attribute names and values
+        if(node.nodeType === Node.ELEMENT_NODE && node.hasAttributes()) {
+          for(let i = 0; i < node.attributes.length; i++){
+            var attr = node.attributes[i];
+            console.log(`${indent}    ${attr.name}: ${attr.value}`)
+          }
+        }
+        // recurse into all the children of this node
+        if(node.hasChildNodes()){
+          var children = node.childNodes;
+          for(let i = 0; i < children.length; i++)
+            recurseDocumentTree(children[i], indent + "    ");
+        }
+      }
+      // Get one element from the tree using the
+      // getElementById() api and display
+      var buttOneDiv = document.getElementById('buttDiv');
+      console.log("************");
+      console.log(`buttOneDiv ${buttOneDiv}`);
+      console.log(buttOneDiv.attributes['id']);
+    </script>
+  </body>
+
+</html>
