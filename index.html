@@ -38,18 +38,19 @@
       var canDiv = document.createElement("div");
       canDiv.setAttribute("id", "canDiv");
       wrapperDiv.appendChild(canDiv);
+      
+      var text = "  " + window.document +"\n";
+      recurseDocumentTree(window.document, "  ");
 
-      console.log(window.document);
-      recurseDocumentTree(window.document, "");
       // recurseDocumentTree() -- descend recursively the tree of elements
       function recurseDocumentTree(node, indent) {
-        console.log(`${indent}${node} ${node.nodeName}`);
+        text += `${indent}${node} ${node.nodeName}\n`;
         // if this node is an Element and it has any attributes,
         // show the attribute names and values
         if(node.nodeType === Node.ELEMENT_NODE && node.hasAttributes()) {
           for(let i = 0; i < node.attributes.length; i++){
             var attr = node.attributes[i];
-            console.log(`${indent}    ${attr.name}: ${attr.value}`)
+            text += `${indent}    ${attr.name}: ${attr.value}\n`;
           }
         }
         // recurse into all the children of this node
@@ -62,10 +63,12 @@
       // Get one element from the tree using the
       // getElementById() api and display
       var buttOneDiv = document.getElementById('buttDiv');
-      console.log("************");
-      console.log(`buttOneDiv ${buttOneDiv}`);
-      console.log(buttOneDiv.attributes['id']);
-    </script>
+      text += "  ************\n";
+      text += `  buttOneDiv ${buttOneDiv}\n`;
+      text += "  " + buttOneDiv.attributes['id'] +"\n";
+      canDiv.textContent = text;
+     </script>
+     
   </body>
 
 </html>

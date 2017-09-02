@@ -14,7 +14,7 @@ body{
   background-color: black;
   width:900px;
   height:100px;
-  float:left;
+//  float:left;
 
 }
 #buttOne{
@@ -51,5 +51,5 @@ body{
   background-color: lightgreen;
   width:900px;
   height:810px;
-  float:left;
+  white-space:pre;
 }
